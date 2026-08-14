@@ -50,3 +50,11 @@ _Result:_ code compiles without errors or warnings (tests not yet run)
 - Code Compiles, No Errors or Warnings
 
 _Result:_ code compiles without errors or warnings (tests not yet run)
+
+## Update Non Spring/Spring Boot Managed Dependencies
+
+- remove hardcoded `lombok` version, letting the parent manage it transitively
+- Code Compiles, No Errors or Warnings
+- moved hardcoded `itextpdf` version to `<properties>` - Spring doesn't manage this dependency for us, so we can't just delete the version, but we can stop hard-coding it inline
+
+_Result:_ code compiles without errors or warnings (tests not yet run)
