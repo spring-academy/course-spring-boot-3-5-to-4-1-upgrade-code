@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -24,8 +24,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authCustomizer) -> authCustomizer
-                        .requestMatchers(new AntPathRequestMatcher("/cashcards/**")).hasRole("CARD-OWNER")
-                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
+                        .requestMatchers(PathPatternRequestMatcher.withDefaults().matcher("/cashcards/**")).hasRole("CARD-OWNER")
+                        .requestMatchers(PathPatternRequestMatcher.withDefaults().basePath("/h2-console").matcher("/**")).permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(withDefaults());
         return http.build();
