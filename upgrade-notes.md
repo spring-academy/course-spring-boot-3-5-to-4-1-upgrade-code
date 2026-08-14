@@ -24,3 +24,21 @@ _Result:_ code compiles without errors or warnings and all tests pass
 - The H2 console registers its own servlet (`/h2-console/*`) alongside the app's `DispatcherServlet` (`/`). `PathPatternRequestMatcher` needs to know which servlet a pattern belongs to, so the H2 console matcher needs `PathPatternRequestMatcher.withDefaults().basePath("/h2-console").matcher("/**")` instead of a plain pattern - otherwise Spring Security can't tell which servlet's path the pattern is relative to
 
 _Result:_ code compiles without errors or warnings and all tests pass
+
+## Upgrade Spring Boot Parent Version
+
+- Updated `spring-boot-starter-parent` from `3.5.16` to `4.1.0`
+- Code did **not** compile cleanly:
+  ```
+  [ERROR] .../src/main/java/example/cashcard/CashCardApplication.java:[5,32] cannot find symbol
+    symbol:   class ConfigurableBootstrapContext
+    location: package org.springframework.boot
+  [ERROR] .../src/main/java/example/cashcard/CashCardApplication.java:[6,32] cannot find symbol
+    symbol:   class DefaultBootstrapContext
+    location: package org.springframework.boot
+  ```
+- Spring Boot 4 moved `ConfigurableBootstrapContext` and `DefaultBootstrapContext` from `org.springframework.boot` to `org.springframework.boot.bootstrap` as part of its broader package modularization
+- Updated the two imports to the new package; no other code changes were needed
+- We are intentionally skipping test execution for now (`./mvnw clean compile` only) - testing gets its own dedicated set of lessons and labs later in this course
+
+_Result:_ code compiles without errors or warnings (tests not yet run)
