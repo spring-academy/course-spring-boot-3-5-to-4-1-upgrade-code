@@ -58,3 +58,11 @@ _Result:_ code compiles without errors or warnings (tests not yet run)
 - moved hardcoded `itextpdf` version to `<properties>` - Spring doesn't manage this dependency for us, so we can't just delete the version, but we can stop hard-coding it inline
 
 _Result:_ code compiles without errors or warnings (tests not yet run)
+
+## Update Spring Boot Starter Names
+
+- Spring Boot 4 modularized the old monolithic `spring-boot-autoconfigure` jar into per-technology modules, and Spring Initializr now generates dependency coordinates that match: `spring-boot-starter-web` -> `spring-boot-starter-webmvc`, `spring-boot-starter-test` -> `spring-boot-starter-webmvc-test`
+- The classic names (`spring-boot-starter-web`, `spring-boot-starter-test`) still exist in Boot 4 as migration aids and would keep compiling, but we're updating to match what a fresh Spring Initializr project would generate today
+- Code Compiles, No Errors or Warnings
+
+_Result:_ code compiles without errors or warnings (tests not yet run)
