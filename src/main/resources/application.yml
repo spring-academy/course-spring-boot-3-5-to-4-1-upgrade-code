@@ -9,6 +9,9 @@ spring:
 
   web:
     locale: en_US
+    resources:
+      cache:
+        period: 31536000
 
   h2:
     console:
@@ -16,7 +19,3 @@ spring:
 
   jpa:
     defer-datasource-initialization: true
-
-  resources:
-    cache:
-      period: 31536000
