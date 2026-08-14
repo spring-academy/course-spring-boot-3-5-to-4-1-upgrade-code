@@ -42,3 +42,11 @@ _Result:_ code compiles without errors or warnings and all tests pass
 - We are intentionally skipping test execution for now (`./mvnw clean compile` only) - testing gets its own dedicated set of lessons and labs later in this course
 
 _Result:_ code compiles without errors or warnings (tests not yet run)
+
+## Remove hard-coded Spring/Spring Boot Dependencies
+
+- remove hardcoded `spring-data-jdbc` version, letting `spring-boot-starter-parent` manage it
+- `./mvnw dependency:tree | grep spring-data-jdbc` now shows `4.1.0` (parent-managed) instead of the hardcoded `3.4.5`
+- Code Compiles, No Errors or Warnings
+
+_Result:_ code compiles without errors or warnings (tests not yet run)
